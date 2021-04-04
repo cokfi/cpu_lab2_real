@@ -23,7 +23,7 @@ begin
         elsif (clk'event and clk='1') then
             counter <= counter +1;
         end if;
-
+        countOut<= counter;
 	end process;
 	--------------------------------------------------------------
 	proc2 : process(clk,rst)

@@ -19,12 +19,13 @@ begin
 	--------------------------------------------------------------
 	proc1 : process(clk,rst)
 	begin
+        counter <=(others =>'0'); 
 		if (rst ='1') then
             counter <=(others =>'0'); 
         elsif (clk'event and clk='1') then
-            if (restart = '0') then 
+            if (restart = '1') then 
                 counter <= (others => '0');
-                restart <= '1';
+                restart <= '0';
             else 
 				counter <= counter +1;
             end if;
@@ -39,9 +40,9 @@ begin
         if (clk'event and clk='0') then
             if (counter = bound) then
 				bound := bound+1;
+                restart <='1';
 				if (bound >upperBound) then
 					bound := (others=>'0');
-                    restart <='0';
                 end if;
             end if; 
         end if;

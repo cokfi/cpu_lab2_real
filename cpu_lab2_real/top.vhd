@@ -37,14 +37,14 @@ begin
 	proc2 : process(clk,rst)
         variable bound :std_logic_vector(n-1 downto 0):=(others=>'0');
     begin
-        if (reset_bound ='1') then
-            bound :=(others=>'0');
-        elsif (clk'event and clk='0') then
+        --if (reset_bound ='1') then
+        --    bound :=(others=>'0');
+        if (clk'event and clk='0') then
             if (counter = bound) then
 				bound := bound+1;
                 restart <='1';
 				if (bound >upperBound) then
-                    reset_bound <='1';
+                    --reset_bound <='1';
                 end if;
             end if; 
         end if;

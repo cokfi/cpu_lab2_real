@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{57791927-2CD2-4346-8A27-A2725836BD19}") = "cpu_lab2_real", "cpu_lab2_real\cpu_lab2_real.v3sproj", "{9E2377EA-968D-46E5-9FC8-C88967C149D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Full Compilation|Default = Full Compilation|Default
+		Syntax Check|Default = Syntax Check|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E2377EA-968D-46E5-9FC8-C88967C149D8}.Full Compilation|Default.ActiveCfg = Full Compilation
+		{9E2377EA-968D-46E5-9FC8-C88967C149D8}.Full Compilation|Default.Build.0 = Full Compilation
+		{9E2377EA-968D-46E5-9FC8-C88967C149D8}.Syntax Check|Default.ActiveCfg = Syntax Check
+		{9E2377EA-968D-46E5-9FC8-C88967C149D8}.Syntax Check|Default.Build.0 = Syntax Check
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9D0F91B5-B38E-497D-A834-93B055C5604B}
+	EndGlobalSection
+EndGlobal

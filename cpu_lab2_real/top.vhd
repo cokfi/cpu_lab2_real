@@ -12,14 +12,15 @@ end top;
 ------------------------------------------------------------------
 architecture arc_sys of top is
     signal counter:std_logic_vector(n-1 downto 0);
-    signal restart:std_logic;
+    signal restart, reset_bound:std_logic;
 	
 	
 begin
 	--------------------------------------------------------------
 	proc1 : process(clk,rst)
 	begin
-        counter <=(others =>'0'); 
+        --counter <=(others =>'0');
+        --restart <='1';
 		if (rst ='1') then
             counter <=(others =>'0'); 
         elsif (clk'event and clk='1') then
@@ -34,15 +35,16 @@ begin
 	end process;
 	--------------------------------------------------------------
 	proc2 : process(clk,rst)
-        variable bound :std_logic_vector(n-1 downto 0);
-	begin
-        bound :=(others=>'0');
-        if (clk'event and clk='0') then
+        variable bound :std_logic_vector(n-1 downto 0):=(others=>'0');
+    begin
+        if (reset_bound ='1') then
+            bound :=(others=>'0');
+        elsif (clk'event and clk='0') then
             if (counter = bound) then
 				bound := bound+1;
                 restart <='1';
 				if (bound >upperBound) then
-					bound := (others=>'0');
+                    reset_bound <='1';
                 end if;
             end if; 
         end if;

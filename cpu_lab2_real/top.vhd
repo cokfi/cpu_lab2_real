@@ -53,10 +53,3 @@ begin
 	
 	
 end arc_sys;
-
-
-
-
-
-
-

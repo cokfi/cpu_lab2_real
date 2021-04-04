@@ -35,7 +35,7 @@ begin
 	proc2 : process(clk,rst)
         variable bound :std_logic_vector(n-1 downto 0);
 	begin
-        bound :=(0=>'1' ,others=>'0');
+        bound :=(others=>'0');
         if (clk'event and clk='0') then
             if (counter = bound) then
 				bound := bound+1;

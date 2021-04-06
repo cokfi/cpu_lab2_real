@@ -11,7 +11,6 @@ entity top is
 end top;
 ------------------------------------------------------------------
 architecture arc_sys of top is
-    --signal restart:std_logic;
 	signal counter,bound :std_logic_vector(n-1 downto 0);--:=(others=>'0');
 	signal increment : std_logic;
 begin

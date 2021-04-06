@@ -11,7 +11,7 @@ entity top is
 end top;
 ------------------------------------------------------------------
 architecture arc_sys of top is
-    signal restart:std_logic;
+    --signal restart:std_logic;
 	signal counter,bound :std_logic_vector(n-1 downto 0);--:=(others=>'0');
 	
 begin
@@ -20,12 +20,14 @@ begin
 	begin
 		if (rst ='1') then
             counter <=(others =>'0'); 
-            restart<= '1';
-            bound<=(others =>'0'); 
+            --restart<= '1';
+            --bound<=(others =>'0'); 
         elsif (clk'event and clk='1') then
-            if (restart = '1') then 
+            if (bound ="00000000") then 
                 counter <= (others => '0');
-                restart<= '0';
+                --restart<= '0';
+            elsif (counter = bound) then
+                counter <= (others => '0');
             else 
 				counter <= counter +1;
             end if;
@@ -33,17 +35,17 @@ begin
 	end process;
 	--------------------------------------------------------------
 	proc2 : process(clk,rst)
+        
 begin
-        --if (rst ='1') then
-            --bound <=(others =>'0');
-            --restart<='1';
-        if (clk'event and clk='0') then
-            if (bound >=upperBound) then
+        if (rst ='1') then
+            bound <=(others =>'0');
+        elsif (clk'event and clk='0') then
+            if (bound=upperBound) then
                 bound <=(others=>'0');
-                restart<='1';
-            elsif (counter = bound) then
+                --restart<='1';
+            elsif (bound=counter) then
 				bound <= bound+1;
-                restart <='1';
+                --restart <='1';
             end if; 
         end if;
 	end process;

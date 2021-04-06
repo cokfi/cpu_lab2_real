@@ -9,11 +9,11 @@ entity tb is
 end tb;
 ---------------------------------------------------------
 architecture rtb of tb is
-	signal rst,clk : std_logic;
+	signal rst,clk,enable : std_logic;
 	signal upperBound : std_logic_vector(n-1 downto 0);
 	signal kfir_bound,countOut : std_logic_vector(n-1 downto 0);
 begin
-	L0 : top generic map (n) port map(rst,clk,upperBound,countOut);
+	L0 : top generic map (n) port map(rst,clk,upperBound,kfir_bound,countOut,enable);
     
 	--------- start of stimulus section ------------------	
         gen_clk : process

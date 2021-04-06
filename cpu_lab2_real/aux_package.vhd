@@ -8,7 +8,8 @@ package aux_package is
 		generic ( n : positive := 8 ); 
 		port( rst,clk : in std_logic;
 		  upperBound : in std_logic_vector(n-1 downto 0);
-		  countOut : out std_logic_vector(n-1 downto 0));
+		  kfir_bound,countOut : out std_logic_vector(n-1 downto 0);
+		  enable : out std_logic);
 	end component;
 
   

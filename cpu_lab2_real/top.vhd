@@ -10,7 +10,8 @@ entity top is
 	generic ( n : positive := 8 ); 
 	port( rst,clk : in std_logic;
 		  upperBound : in std_logic_vector(n-1 downto 0);
-		  kfir_bound,countOut : out std_logic_vector(n-1 downto 0));
+		  kfir_bound,countOut : out std_logic_vector(n-1 downto 0);
+		  enable : out std_logic);
 		
 end top;
 ------------------------------------------------------------------
@@ -22,7 +23,8 @@ begin
 proc1 : process(clk,rst)
 begin
 	if (rst ='1') then
-		counter <=(others =>'0'); 
+		counter <=(others =>'0');
+        enable_inc <='0';
     elsif (clk'event and clk='1') then -- rising edge
 		if (counter >= bound) then
 			counter <= (others => '0');
@@ -38,7 +40,8 @@ begin
 	if (rst ='1') then
 		bound <=(others =>'0');
     elsif (clk'event and clk='0') then -- falling edge
-		if (bound>upperBound) then
+		if (counter=upperBound) then
+            --enable_inc <='0';
 			bound <=(others=>'0');
 		elsif (enable_inc='1')and(counter = 0) then
 			bound <= bound+1;
@@ -48,5 +51,6 @@ end process;
 ------------------------------------------------------------------
 countOut <= counter;
 kfir_bound <=bound;
+enable <=enable_inc;
 
 end arc_sys;

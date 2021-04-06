@@ -20,33 +20,25 @@ begin
 	begin
 		if (rst ='1') then
             counter <=(others =>'0'); 
-            --restart<= '1';
-            --bound<=(others =>'0'); 
         elsif (clk'event and clk='1') then
             if (counter >= bound) then
                 counter <= (others => '0');
-                increment<= '1';
+                increment <='1';
             elsif (counter< bound) then
 				counter <= counter +1;
             end if;
         end if;
 	end process;
 	--------------------------------------------------------------
-	proc2 : process(clk,rst)
-    --variable restart :std_logic;    
+	proc2 : process(clk,rst)  
 begin
         if (rst ='1') then
             bound <=(others =>'0');
-            --restart :='1';
         elsif (clk'event and clk='0') then
-            if (bound=upperBound) then
+            if (bound>upperBound) then
                 bound <=(others=>'0');
-                --restart:='1';
-                --restart<='1';
-            elsif (increment='1') then
+                elsif (increment='1')and(counter = "00000000") then
                 bound <= bound+1;
-                --increment <='0';
-                --restart <='1';
             end if; 
         end if;
 	end process;

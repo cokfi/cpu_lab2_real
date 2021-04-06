@@ -11,7 +11,7 @@ end tb;
 architecture rtb of tb is
 	signal rst,clk : std_logic;
 	signal upperBound : std_logic_vector(n-1 downto 0);
-	signal countOut : std_logic_vector(n-1 downto 0);
+	signal kfir_bound,countOut : std_logic_vector(n-1 downto 0);
 begin
 	L0 : top generic map (n) port map(rst,clk,upperBound,countOut);
     

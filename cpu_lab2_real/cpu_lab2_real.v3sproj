@@ -29,15 +29,6 @@
       <ParsingOptions>FullParse</ParsingOptions>
       <NotificationLevel>All</NotificationLevel>
     </Content>
-    <Content Include="hello.vhd">
-      <SubType>Content</SubType>
-      <NeedsCodeFormatting>true</NeedsCodeFormatting>
-      <ContentTypeProperty>Vhdl</ContentTypeProperty>
-      <LibraryName>work</LibraryName>
-      <NamingCheck>True</NamingCheck>
-      <ParsingOptions>FullParse</ParsingOptions>
-      <NotificationLevel>All</NotificationLevel>
-    </Content>
     <Content Include="tb.vhd">
       <SubType>Content</SubType>
       <LibraryName>work</LibraryName>

@@ -30,8 +30,6 @@ begin
             elsif (counter< bound) then
                 counter <= counter +1;
             end if;
-            --if (counter=upperBound) then
-            --    enable_inc <='0';
         end if;
     end process;
 	--------------------------------------------------------------
@@ -39,6 +37,7 @@ begin
     begin
         if (rst ='1') then
             bound <=(others =>'0');
+            delay_bound <= '0';
         elsif (clk'event and clk='0') then -- falling edge
             if (counter=upperBound) then
                 --enable_inc <='0';
@@ -53,8 +52,4 @@ begin
     end process;
 	--------------------------------------------------------------
 	countOut <= counter;
-	
-	
-	
-	
 end arc_sys;

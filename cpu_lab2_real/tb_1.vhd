@@ -1,3 +1,5 @@
+-- tb_1: VHDL program that test the counter with bound module with regard to changing upperBound over time
+--  This program is designated for modelsim  
 library IEEE;
     use ieee.std_logic_1164.all;
     use ieee.std_logic_arith.all;
@@ -17,14 +19,14 @@ begin
     L0 : top generic map (n) port map(rst,clk,upperBound,countOut);
 
     --------- start of stimulus section ------------------    
-    gen_clk : process
+    gen_clk : process -- clock's process
     begin
         clk <= '0';
         wait for 50 ns;
         clk <= not clk;
         wait for 50 ns;
     end process;
-    upper_bound_game : process
+    upper_bound_game : process -- increasing and decreasing bound
     begin
         upperBound <= (1 =>'1', others =>'0');
         for i in 0 to m-1 loop 
@@ -38,7 +40,7 @@ begin
         wait;
     end process;
 
-    gen_rst : process
+    gen_rst : process -- reset
     begin
         rst <='1','0' after 100 ns;
         wait;

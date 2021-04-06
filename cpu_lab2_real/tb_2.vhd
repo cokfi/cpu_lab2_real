@@ -1,3 +1,5 @@
+-- tb_2: VHDL program that test the counter with bound module with regard to changing rst over time
+--  This program is designated for modelsim  
 library IEEE;
     use ieee.std_logic_1164.all;
     use ieee.std_logic_arith.all;
@@ -16,15 +18,17 @@ begin
     L0 : top generic map (n) port map(rst,clk,upperBound,countOut);
 
     --------- start of stimulus section ------------------    
-    gen_clk : process
+    gen_clk : process -- clock's process
     begin
         clk <= '0';
         wait for 50 ns;
         clk <= not clk;
         wait for 50 ns;
     end process;
-    upperBound <= (2=>'1',1=>'0',0=>'1',others=>'0');
-    switch_rst : process
+    
+    upperBound <= (2=>'1',1=>'0',0=>'1',others=>'0'); -- set permanent upperBound
+    
+    switch_rst : process    
     begin
         rst <= '1';
         wait for 500 ns;

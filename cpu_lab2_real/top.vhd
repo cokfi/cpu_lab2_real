@@ -17,7 +17,7 @@ end top;
 ------------------------------------------------------------------
 architecture arc_sys of top is
 	signal counter,bound :std_logic_vector(n-1 downto 0);
-	signal enable_inc : std_logic; -- enable increment of bound
+	signal enable_inc,delay_bound : std_logic; -- enable increment of bound,delay increment of bound.
 begin
 ------------------------------------------------------------------
 proc1 : process(clk,rst)
@@ -32,6 +32,8 @@ begin
         elsif (counter< bound) then
 			counter <= counter +1;
         end if;
+        --if (counter=upperBound) then
+        --    enable_inc <='0';
 	end if;
 end process;
 ------------------------------------------------------------------
@@ -40,9 +42,12 @@ begin
 	if (rst ='1') then
 		bound <=(others =>'0');
     elsif (clk'event and clk='0') then -- falling edge
-		if (counter=upperBound) then
+        if (counter=upperBound) then
             --enable_inc <='0';
-			bound <=(others=>'0');
+            bound <=(others=>'0'); -- reset bound
+            delay_bound<='1'; -- delay one cycle for bound =0
+        elsif (delay_bound ='1') then -- delay bound's increment if bound is reset
+            delay_bound <='0';
 		elsif (enable_inc='1')and(counter = 0) then
 			bound <= bound+1;
         end if; 

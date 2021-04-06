@@ -37,7 +37,7 @@ begin
         elsif (clk'event and clk='0') then
             if (bound>upperBound) then
                 bound <=(others=>'0');
-                elsif (increment='1')and(counter = "00000000") then
+                elsif (increment='1')and(counter = 0) then
                 bound <= bound+1;
             end if; 
         end if;

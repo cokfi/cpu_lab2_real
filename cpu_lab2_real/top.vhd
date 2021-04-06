@@ -25,9 +25,11 @@ begin
 		if (rst ='1') then
             counter <=(others =>'0'); 
             restart<= '1';
+            bound<=(others =>'0'); 
         elsif (clk'event and clk='1') then
             if (restart = '1') then 
                 counter <= (others => '0');
+                restart<= '0';
             else 
 				counter <= counter +1;
             end if;
@@ -39,16 +41,15 @@ begin
 	proc2 : process(clk,rst)
         --variable bound :std_logic_vector(n-1 downto 0);--:=(others=>'0');
 begin
-        if (rst ='1') then
-            bound <=(others =>'0');
-            restart<='1';
-        elsif (clk'event and clk='0') then
+        --if (rst ='1') then
+            --bound <=(others =>'0');
+            --restart<='1';
+        if (clk'event and clk='0') then
             if (counter = bound) then
 				bound <= bound+1;
                 restart <='1';
-				if (bound =upperBound) then
-                    bound <=(others=>'0');
-                    
+				if (bound >=upperBound) then
+                    bound <=(others=>'0'); 
                 end if;
             end if; 
         end if;
